@@ -15,8 +15,20 @@ code {
 .board-space {
     width: 30px;
     height: 30px;
-    background-color: rgb(230, 230, 230);
+    background-color: rgb(200, 200, 200);
     margin: 2px;
+}
+
+.board-space.hidden {
+    background-color: rgb(200, 200, 200);
+}
+
+.board-space.bomb {
+    background: red !important;
+}
+
+.board-space.open {
+    background-color: rgb(230, 230, 230);
 }
 
 .board-space:hover {

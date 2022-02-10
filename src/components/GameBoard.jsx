@@ -17,7 +17,9 @@ function GameBoard(props) {
             let row = []
 
             for (let j = 0; j < WIDTH; j++) {
-                row.push(0)
+                // Random for now
+                let bomb = Math.random() < 0.3
+                row.push(bomb)
             }
 
             newLayout.push(row)
@@ -29,19 +31,46 @@ function GameBoard(props) {
     const createGrid = () => {
         let grid = []
 
-        for (let i = 0; i < layout.length; i++) {
-            let current = layout[i]
+        for (let y = 0; y < layout.length; y++) {
+            let current = layout[y]
             let row = []
 
-            for (let j = 0; j < current.length; j++) {
+            for (let x = 0; x < current.length; x++) {
+                let count = 0;
+                let bomb = current[x] === true
+
+                if (!bomb) {
+                    for (let i = -1; i < 2; i++) {
+                        for (let j = -1; j < 2; j++) {
+                            let newY = i + y
+                            let newX = j + x
+
+                            let validY = newY >= 0 && newY < HEIGHT
+                            let validX = newX >= 0 && newX < WIDTH
+                            let validCoords = (newX !== x || newY !== y)
+
+                            console.log(newX, newY, validX, validY, validCoords)
+
+                            if (validCoords && validX && validY) {
+                                if (layout[newY][newX] === true) {
+                                    count++;
+                                }
+                            }
+                        }
+                    }
+                }
+
+
                 row.push(
                     <Space
-                        key={i + "" + j}
+                        bomb={bomb}
+                        count={count}
+                        key={x + "" + y}
                     />
                 )
             }
 
-            grid.push(<div className="board-row" key={i}>{row}</div>)
+            grid.push(<div className="board-row" key={y}>{row}</div>)
         }
 
         return grid
