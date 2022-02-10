@@ -1,17 +1,20 @@
 import { useEffect, useState } from "react"
 
 function Space(props) {
-    const [open, setOpen] = useState(false)
-    const [flagged, setFlagged] = useState(false)
+    const xCoord = props.x
+    const yCoord = props.y
+    const open = props.open
+    const flagged = props.flagged
 
     const onClick = (e) => {
         let shiftDown = props.shiftDown
 
         if (!open) {
             if (shiftDown) {
-                setFlagged(!flagged)
+                props.setFlagged(xCoord, yCoord, !flagged)
             } else {
-                setOpen(true)
+                props.setOpen(xCoord, yCoord)
+                props.openSurrounded(xCoord, yCoord)
             }
         }
     }
@@ -33,7 +36,7 @@ function Space(props) {
     const createCount = () => {
         let count = props.count
 
-        if (open && count > 0) {
+        if (open && count > 0 || true) {
             return (<p className="count-text">{props.count}</p>)
         } else {
             return null
