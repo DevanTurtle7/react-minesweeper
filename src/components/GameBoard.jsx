@@ -60,7 +60,6 @@ function GameBoard(props) {
                     }
                 }
 
-
                 row.push(
                     <Space
                         bomb={bomb}
