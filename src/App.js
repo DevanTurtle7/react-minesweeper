@@ -1,7 +1,9 @@
+import GameBoard from "./components/GameBoard";
+
 function App() {
     return (
-        <div>
-
+        <div className="center-absolute page">
+            <GameBoard />
         </div>
     );
 }
