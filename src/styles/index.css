@@ -66,3 +66,7 @@ code {
     width: fit-content;
     height: fit-content;
 }
+
+.count-text {
+    font-weight: 600;
+}
