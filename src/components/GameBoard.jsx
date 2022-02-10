@@ -87,6 +87,7 @@ function GameBoard(props) {
                     <Space
                         bomb={bomb}
                         count={count}
+                        shiftDown={props.shiftDown}
                         key={x + "" + y}
                     />
                 )

@@ -39,6 +39,10 @@ code {
     cursor: pointer;
 }
 
+.board-space.hidden.flagged {
+    background-color: greenyellow;
+}
+
 .board-row {
     display: flex;
     flex-flow: row;

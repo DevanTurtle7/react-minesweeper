@@ -1,11 +1,18 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
 function Space(props) {
     const [open, setOpen] = useState(false)
+    const [flagged, setFlagged] = useState(false)
 
-    const onClick = () => {
+    const onClick = (e) => {
+        let shiftDown = props.shiftDown
+
         if (!open) {
-            setOpen(true)
+            if (shiftDown) {
+                setFlagged(!flagged)
+            } else {
+                setOpen(true)
+            }
         }
     }
 
@@ -14,6 +21,10 @@ function Space(props) {
 
         if (open && props.bomb) {
             className += " bomb"
+        }
+
+        if (!open && flagged) {
+            className += " flagged"
         }
 
         return className
