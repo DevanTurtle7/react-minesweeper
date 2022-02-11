@@ -25,7 +25,7 @@ function Space(props) {
     })
 
     const onClick = (e) => {
-        let shiftDown = props.shiftDown
+        let shiftDown = e.shiftKey
 
         if (!open) {
             if (shiftDown) {
