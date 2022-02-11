@@ -2,11 +2,18 @@ import { useEffect, useState } from "react";
 import Space from './Space';
 import Tile from './Tile';
 
+const GAME_NOT_STARTED = 0
+const GAME_IN_PROGRESS = 1
+const GAME_OVER = 2
+    
+const HEIGHT = 15;
+const WIDTH = 30;
+const NUM_MINES = 50;
+
 function GameBoard(props) {
-    const HEIGHT = 15;
-    const WIDTH = 30;
     const [layout, setLayout] = useState([])
     const [update, setUpdate] = useState(false)
+    const [gameState, setGameState] = useState(GAME_NOT_STARTED)
 
     useEffect(() => {
         if (layout.length === 0) {
@@ -23,10 +30,34 @@ function GameBoard(props) {
     }
 
     const gameOver = () => {
-        alert("game over")
+        if (gameState != GAME_OVER) {
+            alert("game over")
+            setGameState(GAME_OVER)
+        }
     }
 
     const generateLayout = () => {
+        let mines = []
+        let availablePos = new Set()
+        let keys = {}
+
+        // Add all the positions to the set and keys db
+        for (let y = 0; y < HEIGHT; y++) {
+            for (let x = 0; x < WIDTH; x++) {
+                let id = (y * WIDTH) + x
+                let coords = [x, y]
+
+                keys[id] = coords
+                availablePos.add(id)
+            }
+        }
+
+        // Draw random positions to get mines
+        let count = 0
+
+
+
+
         let tileLayout = []
 
         for (let y = 0; y < HEIGHT; y++) {
@@ -95,7 +126,6 @@ function GameBoard(props) {
         return grid
     }
 
-    console.log('rendering')
     return (
         <div className="board">
             {createGrid()}

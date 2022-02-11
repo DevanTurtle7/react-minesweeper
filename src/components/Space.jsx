@@ -31,8 +31,10 @@ function Space(props) {
                 tile.toggleFlagged()
                 setUpdate(true)
             } else {
-                tile.setOpen()
-                setUpdate(true)
+                if (!flagged) {
+                    tile.setOpen()
+                    setUpdate(true)
+                }
             }
         } else {
             if (tile.isSatisfied()) {
@@ -59,7 +61,7 @@ function Space(props) {
     const createCount = () => {
         let text = (bomb ? "" : count)
 
-        if (open && count > 0 || true) {
+        if (open && count > 0) {
             return (<p className="count-text">{text}</p>)
         } else {
             return null
