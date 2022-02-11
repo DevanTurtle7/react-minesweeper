@@ -37,42 +37,51 @@ function GameBoard(props) {
     }
 
     const generateLayout = () => {
-        let mines = []
+        let mines = new Set()
         let availablePos = new Set()
         let keys = {}
 
         // Add all the positions to the set and keys db
         for (let y = 0; y < HEIGHT; y++) {
             for (let x = 0; x < WIDTH; x++) {
-                let id = (y * WIDTH) + x
+                let key = (y * WIDTH) + x
                 let coords = [x, y]
 
-                keys[id] = coords
-                availablePos.add(id)
+                keys[key] = coords
+                availablePos.add(key)
             }
         }
 
         // Draw random positions to get mines
-        let count = 0
-
-
-
+        for (let i = 0; i < NUM_MINES; i++) {
+            let positions = Array.from(availablePos);
+            let key = positions[Math.floor(Math.random() * positions.length)];
+            mines.add(key)
+            availablePos.delete(key)
+        }
 
         let tileLayout = []
+        let count = 0
 
         for (let y = 0; y < HEIGHT; y++) {
             let row = []
 
             for (let x = 0; x < WIDTH; x++) {
                 // Random for now
-                let bomb = Math.random() < 0.2
+                let key = (y * WIDTH) + x
+                let bomb = mines.has(key)
                 let tile = new Tile(x, y, bomb)
+
+                if (bomb) {
+                    count++
+                }
 
                 row.push(tile)
             }
 
             tileLayout.push(row)
         }
+        console.log(count)
 
         for (let y = 0; y < HEIGHT; y++) {
             for (let x = 0; x < WIDTH; x++) {
