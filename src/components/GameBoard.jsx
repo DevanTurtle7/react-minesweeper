@@ -7,14 +7,14 @@ const GAME_NOT_STARTED = 0
 const GAME_IN_PROGRESS = 1
 const GAME_OVER = 2
 
-const HEIGHT = 15;
-const WIDTH = 30;
-const NUM_MINES = 50;
-
 function GameBoard(props) {
     const [layout, setLayout] = useState([])
     const [update, setUpdate] = useState(false)
     const [gameState, setGameState] = useState(GAME_NOT_STARTED)
+
+    const height = props.height
+    const width = props.width
+    const num_mines = props.num_mines
 
     useEffect(() => {
         if (update) {
@@ -33,6 +33,10 @@ function GameBoard(props) {
         }
     }
 
+    const updateScore = (increase) => {
+        props.updateScore(increase)
+    }
+
     const generateLayout = (startX, startY) => {
         let mines = new Set()
         let availablePos = new Set()
@@ -43,16 +47,16 @@ function GameBoard(props) {
             for (let y = -1; y < 2; y++) {
                 let currentX = startX + x
                 let currentY = startY + y
-                let key = (currentY * WIDTH) + currentX
+                let key = (currentY * width) + currentX
 
                 ignored.add(key)
             }
         }
 
         // Add all the positions to the set and keys db
-        for (let y = 0; y < HEIGHT; y++) {
-            for (let x = 0; x < WIDTH; x++) {
-                let key = (y * WIDTH) + x
+        for (let y = 0; y < height; y++) {
+            for (let x = 0; x < width; x++) {
+                let key = (y * width) + x
 
                 if (!ignored.has(key)) {
                     let coords = [x, y]
@@ -64,7 +68,7 @@ function GameBoard(props) {
         }
 
         // Draw random positions to get mines
-        for (let i = 0; i < NUM_MINES; i++) {
+        for (let i = 0; i < num_mines; i++) {
             let positions = Array.from(availablePos);
             let key = positions[Math.floor(Math.random() * positions.length)];
             mines.add(key)
@@ -73,12 +77,12 @@ function GameBoard(props) {
 
         let tileLayout = []
 
-        for (let y = 0; y < HEIGHT; y++) {
+        for (let y = 0; y < height; y++) {
             let row = []
 
-            for (let x = 0; x < WIDTH; x++) {
+            for (let x = 0; x < width; x++) {
                 // Random for now
-                let key = (y * WIDTH) + x
+                let key = (y * width) + x
                 let bomb = mines.has(key)
                 let tile = new Tile(x, y, bomb)
 
@@ -88,8 +92,8 @@ function GameBoard(props) {
             tileLayout.push(row)
         }
 
-        for (let y = 0; y < HEIGHT; y++) {
-            for (let x = 0; x < WIDTH; x++) {
+        for (let y = 0; y < height; y++) {
+            for (let x = 0; x < width; x++) {
                 let current = tileLayout[y][x]
 
                 for (let i = -1; i < 2; i++) {
@@ -97,8 +101,8 @@ function GameBoard(props) {
                         let newY = i + y
                         let newX = j + x
 
-                        let validY = newY >= 0 && newY < HEIGHT
-                        let validX = newX >= 0 && newX < WIDTH
+                        let validY = newY >= 0 && newY < height
+                        let validX = newX >= 0 && newX < width
                         let validCoords = (newX !== x || newY !== y)
 
                         if (validCoords && validX && validY) {
@@ -120,11 +124,11 @@ function GameBoard(props) {
         if (gameState === GAME_NOT_STARTED) {
             let grid = []
 
-            for (let y = 0; y < HEIGHT; y++) {
+            for (let y = 0; y < height; y++) {
                 let current = layout[y]
                 let row = []
 
-                for (let x = 0; x < WIDTH; x++) {
+                for (let x = 0; x < width; x++) {
                     row.push(<EmptySpace
                         onClick={generateLayout}
                         x={x}
@@ -153,6 +157,7 @@ function GameBoard(props) {
                             tile={tile}
                             hardUpdate={hardUpdate}
                             gameOver={gameOver}
+                            updateScore={updateScore}
                             key={x + "" + y}
                         />
                     )
@@ -164,6 +169,8 @@ function GameBoard(props) {
             return grid
         }
     }
+
+    console.log('rendering')
 
     return (
         <div className="board">

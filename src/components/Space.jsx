@@ -28,6 +28,7 @@ function Space(props) {
 
         if (!open) {
             if (shiftDown) {
+                props.updateScore(!flagged)
                 tile.toggleFlagged()
                 setUpdate(true)
             } else {
