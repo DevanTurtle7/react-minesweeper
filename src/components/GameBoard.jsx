@@ -18,6 +18,10 @@ function GameBoard(props) {
         }
     })
 
+    const hardUpdate = () => {
+        setUpdate(true)
+    }
+
     const generateLayout = () => {
         let tileLayout = []
 
@@ -74,7 +78,7 @@ function GameBoard(props) {
                     <Space
                         shiftDown={props.shiftDown}
                         tile={tile}
-                        hardUpdate={setUpdate}
+                        hardUpdate={hardUpdate}
                         key={x + "" + y}
                     />
                 )
@@ -86,6 +90,7 @@ function GameBoard(props) {
         return grid
     }
 
+    console.log('rendering')
     return (
         <div className="board">
             {createGrid()}

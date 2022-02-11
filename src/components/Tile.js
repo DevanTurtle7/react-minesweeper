@@ -45,9 +45,10 @@ class Tile {
     }
 
     openNeighbors() {
-        console.log('opening neighbors')
         this.#neighbors.forEach((item) => {
-            item.setOpen()
+            if (!item.isFlagged()) {
+                item.setOpen()
+            }
         })
     }
 

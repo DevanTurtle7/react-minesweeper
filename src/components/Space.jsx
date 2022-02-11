@@ -30,7 +30,6 @@ function Space(props) {
                 setUpdate(true)
             }
         } else {
-            console.log(tile.isSatisfied())
             if (tile.isSatisfied()) {
                 tile.openNeighbors()
                 hardUpdate()
