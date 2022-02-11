@@ -1,20 +1,22 @@
 import { useEffect, useState } from "react"
 
 function Space(props) {
-    const xCoord = props.x
-    const yCoord = props.y
-    const open = props.open
-    const flagged = props.flagged
+    const tile = props.tile
+    const xCoord = tile.getX()
+    const yCoord = tile.getY()
+    const open = tile.isOpen()
+    const flagged = tile.isFlagged()
+    const bomb = tile.isBomb()
+    const count = tile.getCount()
+
+    console.log(tile.isOpen())
 
     const onClick = (e) => {
         let shiftDown = props.shiftDown
 
         if (!open) {
             if (shiftDown) {
-                props.setFlagged(xCoord, yCoord, !flagged)
             } else {
-                props.setOpen(xCoord, yCoord)
-                props.openSurrounded(xCoord, yCoord)
             }
         }
     }
@@ -22,7 +24,7 @@ function Space(props) {
     const getClassName = () => {
         let className = "board-space " + (open ? "open" : "hidden")
 
-        if (open && props.bomb) {
+        if (open && bomb) {
             className += " bomb"
         }
 
@@ -34,10 +36,10 @@ function Space(props) {
     }
 
     const createCount = () => {
-        let count = props.count
+        let text = (bomb ? "" : count)
 
         if (open && count > 0 || true) {
-            return (<p className="count-text">{props.count}</p>)
+            return (<p className="count-text">{text}</p>)
         } else {
             return null
         }
