@@ -22,6 +22,10 @@ function GameBoard(props) {
         setUpdate(true)
     }
 
+    const gameOver = () => {
+        alert("game over")
+    }
+
     const generateLayout = () => {
         let tileLayout = []
 
@@ -79,6 +83,7 @@ function GameBoard(props) {
                         shiftDown={props.shiftDown}
                         tile={tile}
                         hardUpdate={hardUpdate}
+                        gameOver={gameOver}
                         key={x + "" + y}
                     />
                 )

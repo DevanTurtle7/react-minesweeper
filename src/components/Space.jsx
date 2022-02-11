@@ -9,12 +9,17 @@ function Space(props) {
     const bomb = tile.isBomb()
     const count = tile.getCount()
     const hardUpdate = props.hardUpdate
+    const gameOver = props.gameOver
 
     const [needsUpdate, setUpdate] = useState(false)
 
     useEffect(() => {
         if (needsUpdate) {
             setUpdate(false)
+        }
+
+        if (bomb && open) {
+            gameOver()
         }
     })
 
