@@ -1,52 +1,72 @@
 
 class Tile {
+    #x
+    #y
+    #bomb
+    #open
+    #flagged
+    #neighbors
+
     constructor(x, y, bomb) {
-        this.x = x
-        this.y = y
-        this.bomb = bomb
+        this.#x = x
+        this.#y = y
+        this.#bomb = bomb
 
-        this.open = false
-        this.flagged = false
+        this.#open = false
+        this.#flagged = false
 
-        this.neighbors = new Set()
+        this.#neighbors = new Set()
     }
 
     addNeighbor(neighbor) {
-        this.neighbors.add(neighbor)
+        this.#neighbors.add(neighbor)
     }
 
     isSatisfied() {
         let numFlags = 0
 
-        this.neighbors.forEach((item) => {
+        this.#neighbors.forEach((item) => {
             if (item.isFlagged()) {
                 numFlags++
             }
         })
 
-        return numFlags === this.count
+        return numFlags === this.getCount()
     }
 
     setOpen() {
-        this.open = true
+        if (!this.#open) {
+            this.#open = true
+
+            if (this.isSatisfied()) {
+                this.openNeighbors()
+            }
+        }
     }
 
-    setFlagged(flagged) {
-        this.flagged = flagged
+    openNeighbors() {
+        console.log('opening neighbors')
+        this.#neighbors.forEach((item) => {
+            item.setOpen()
+        })
+    }
+
+    toggleFlagged() {
+        this.#flagged = !this.#flagged
     }
 
     isFlagged() {
-        return this.flagged
+        return this.#flagged
     }
 
     getCount() {
-        if (this.bomb) {
+        if (this.#bomb) {
             return -1
         }
 
         let count = 0
 
-        this.neighbors.forEach((item) => {
+        this.#neighbors.forEach((item) => {
             if (item.isBomb()) {
                 count++
             }
@@ -56,19 +76,19 @@ class Tile {
     }
 
     isBomb() {
-        return this.bomb
+        return this.#bomb
     }
 
     getX() {
-        return this.x
+        return this.#x
     }
 
     getY() {
-        return this.y
+        return this.#y
     }
 
     isOpen() {
-        return this.isOpen
+        return this.#open
     }
 }
 

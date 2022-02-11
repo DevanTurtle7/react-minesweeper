@@ -8,15 +8,32 @@ function Space(props) {
     const flagged = tile.isFlagged()
     const bomb = tile.isBomb()
     const count = tile.getCount()
+    const hardUpdate = props.hardUpdate
 
-    console.log(tile.isOpen())
+    const [needsUpdate, setUpdate] = useState(false)
+
+    useEffect(() => {
+        if (needsUpdate) {
+            setUpdate(false)
+        }
+    })
 
     const onClick = (e) => {
         let shiftDown = props.shiftDown
 
         if (!open) {
             if (shiftDown) {
+                tile.toggleFlagged()
+                setUpdate(true)
             } else {
+                tile.setOpen()
+                setUpdate(true)
+            }
+        } else {
+            console.log(tile.isSatisfied())
+            if (tile.isSatisfied()) {
+                tile.openNeighbors()
+                hardUpdate()
             }
         }
     }

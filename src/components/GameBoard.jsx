@@ -6,10 +6,17 @@ function GameBoard(props) {
     const HEIGHT = 15;
     const WIDTH = 30;
     const [layout, setLayout] = useState([])
+    const [update, setUpdate] = useState(false)
 
     useEffect(() => {
-        generateLayout()
-    }, [])
+        if (layout.length === 0) {
+            generateLayout()
+        }
+
+        if (update) {
+            setUpdate(false)
+        }
+    })
 
     const generateLayout = () => {
         let tileLayout = []
@@ -36,11 +43,11 @@ function GameBoard(props) {
                     for (let j = -1; j < 2; j++) {
                         let newY = i + y
                         let newX = j + x
-        
+
                         let validY = newY >= 0 && newY < HEIGHT
                         let validX = newX >= 0 && newX < WIDTH
                         let validCoords = (newX !== x || newY !== y)
-        
+
                         if (validCoords && validX && validY) {
                             let neighbor = tileLayout[newY][newX]
                             current.addNeighbor(neighbor)
@@ -65,7 +72,9 @@ function GameBoard(props) {
 
                 row.push(
                     <Space
-                    tile={tile}
+                        shiftDown={props.shiftDown}
+                        tile={tile}
+                        hardUpdate={setUpdate}
                         key={x + "" + y}
                     />
                 )
