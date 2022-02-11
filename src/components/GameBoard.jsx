@@ -170,8 +170,6 @@ function GameBoard(props) {
         }
     }
 
-    console.log('rendering')
-
     return (
         <div className="board">
             {createGrid()}

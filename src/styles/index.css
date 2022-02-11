@@ -5,6 +5,8 @@ body {
         sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+
+    --overflagged-color: #ff6b6b
 }
 
 code {
@@ -21,6 +23,12 @@ code {
     flex-flow: column;
     justify-content: center;
     align-items: center;
+
+    user-select: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
 }
 
 .board-space.hidden {
@@ -41,6 +49,10 @@ code {
 
 .board-space.hidden.flagged {
     background-color: greenyellow;
+}
+
+.board-space.overflagged {
+    background-color: var(--overflagged-color);
 }
 
 .board-row {

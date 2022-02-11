@@ -22,7 +22,7 @@ class Tile {
         this.#neighbors.add(neighbor)
     }
 
-    isSatisfied() {
+    numFlags() {
         let numFlags = 0
 
         this.#neighbors.forEach((item) => {
@@ -31,7 +31,11 @@ class Tile {
             }
         })
 
-        return numFlags === this.getCount()
+        return numFlags
+    }
+
+    isSatisfied() {
+        return this.numFlags() === this.getCount()
     }
 
     setOpen() {
@@ -91,6 +95,7 @@ class Tile {
     isOpen() {
         return this.#open
     }
+
 }
 
 export default Tile

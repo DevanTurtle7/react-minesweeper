@@ -8,6 +8,7 @@ function Space(props) {
     const flagged = tile.isFlagged()
     const bomb = tile.isBomb()
     const count = tile.getCount()
+    const numFlags = tile.numFlags()
     const hardUpdate = props.hardUpdate
     const gameOver = props.gameOver
 
@@ -54,6 +55,10 @@ function Space(props) {
 
         if (!open && flagged) {
             className += " flagged"
+        }
+
+        if (open && !bomb && (numFlags > count)) {
+            className += " overflagged"
         }
 
         return className
