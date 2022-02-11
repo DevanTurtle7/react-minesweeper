@@ -36,6 +36,10 @@ function Space(props) {
                 if (!flagged) {
                     tile.setOpen()
                     setUpdate(true)
+
+                    if (count === 0) {
+                        hardUpdate()
+                    }
                 }
             }
         } else {
