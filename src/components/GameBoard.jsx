@@ -153,7 +153,6 @@ function GameBoard(props) {
 
                     row.push(
                         <Space
-                            shiftDown={props.shiftDown}
                             tile={tile}
                             hardUpdate={hardUpdate}
                             gameOver={gameOver}
