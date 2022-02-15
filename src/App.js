@@ -1,10 +1,7 @@
 import { useState } from "react";
 import GameBoard from "./components/GameBoard";
 import GameScore from "./components/GameScore";
-
-const GAME_NOT_STARTED = 0
-const GAME_IN_PROGRESS = 1
-const GAME_OVER = 2
+import { GAME_NOT_STARTED, GAME_IN_PROGRESS, GAME_OVER } from "./Globals";
 
 const HEIGHT = 15;
 const WIDTH = 30;

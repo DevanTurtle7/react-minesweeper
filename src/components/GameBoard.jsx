@@ -3,9 +3,7 @@ import EmptySpace from "./EmptySpace";
 import Space from './Space';
 import Tile from './Tile';
 
-const GAME_NOT_STARTED = 0
-const GAME_IN_PROGRESS = 1
-const GAME_OVER = 2
+import { GAME_NOT_STARTED, GAME_IN_PROGRESS, GAME_OVER } from "../Globals";
 
 function GameBoard(props) {
     const [layout, setLayout] = useState([])
