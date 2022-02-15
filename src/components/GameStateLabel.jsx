@@ -1,4 +1,4 @@
-import { GAME_NOT_STARTED, GAME_IN_PROGRESS, GAME_WON, GAME_LOST } from "../Globals";
+import { GAME_NOT_STARTED, GAME_WON, GAME_LOST } from "../Globals";
 
 function GameStateLabel(props) {
 

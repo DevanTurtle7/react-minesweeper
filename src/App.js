@@ -3,7 +3,7 @@ import GameBoard from "./components/GameBoard";
 import GameScore from "./components/GameScore";
 import NewGameButton from "./components/NewGameButton";
 import Instructions from "./components/Instructions";
-import { GAME_NOT_STARTED, GAME_IN_PROGRESS, GAME_WON, GAME_LOST } from "./Globals";
+import { GAME_NOT_STARTED } from "./Globals";
 import GameStateLabel from "./components/GameStateLabel";
 
 const HEIGHT = 15;

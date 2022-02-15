@@ -27,7 +27,7 @@ function GameBoard(props) {
     }
 
     const gameOver = () => {
-        if (gameState != GAME_LOST) {
+        if (gameState !== GAME_LOST) {
             setGameState(GAME_LOST)
         }
     }
@@ -47,7 +47,7 @@ function GameBoard(props) {
                 let current = layout[y][x]
 
                 // If its not a mine, it shouldn't be flagged. If its a mine, it should be flagged
-                if (current.isMine() != current.isFlagged()) {
+                if (current.isMine() !== current.isFlagged()) {
                     return false
                 }
             }
@@ -145,7 +145,6 @@ function GameBoard(props) {
             let grid = []
 
             for (let y = 0; y < height; y++) {
-                let current = layout[y]
                 let row = []
 
                 for (let x = 0; x < width; x++) {
