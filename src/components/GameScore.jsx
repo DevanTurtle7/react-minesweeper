@@ -1,6 +1,6 @@
 
 function GameScore(props) {
-    return (<p>{props.score} / {props.numMines} mines</p>)
+    return (<p id="game-score">{props.score} / {props.numMines} mines</p>)
 }
 
 export default GameScore
