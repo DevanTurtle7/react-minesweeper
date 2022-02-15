@@ -134,3 +134,12 @@ code {
     width: var(--tile_size);
     height: var(--tile_size);
 }
+
+.game-state-label {
+    margin: 0;
+    visibility: hidden;
+}
+
+.game-state-label.visible {
+    visibility: visible;
+}

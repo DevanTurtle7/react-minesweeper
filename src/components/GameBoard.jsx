@@ -27,7 +27,6 @@ function GameBoard(props) {
 
     const gameOver = () => {
         if (gameState != GAME_LOST) {
-            alert("game over")
             setGameState(GAME_LOST)
         }
     }

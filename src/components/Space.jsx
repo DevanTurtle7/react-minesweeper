@@ -2,8 +2,6 @@ import { useEffect, useState } from "react"
 
 function Space(props) {
     const tile = props.tile
-    const xCoord = tile.getX()
-    const yCoord = tile.getY()
     const open = tile.isOpen()
     const flagged = tile.isFlagged()
     const mine = tile.isMine()
@@ -80,9 +78,9 @@ function Space(props) {
 
     return (
         <div className="board-space-container">
-        <div className={getClassName()} onClick={onClick}>
-            {createCount()}
-        </div>
+            <div className={getClassName()} onClick={onClick}>
+                {createCount()}
+            </div>
         </div>
     )
 }

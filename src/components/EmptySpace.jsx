@@ -8,7 +8,9 @@ function EmptySpace(props) {
     }
 
     return (
-        <div className={"board-space hidden"} onClick={onClick}>
+        <div className="board-space-container">
+            <div className={"board-space hidden"} onClick={onClick}>
+            </div>
         </div>
     )
 }

@@ -4,6 +4,7 @@ import GameScore from "./components/GameScore";
 import NewGameButton from "./components/NewGameButton";
 import Instructions from "./components/Instructions";
 import { GAME_NOT_STARTED, GAME_IN_PROGRESS, GAME_WON, GAME_LOST } from "./Globals";
+import GameStateLabel from "./components/GameStateLabel";
 
 const HEIGHT = 15;
 const WIDTH = 30;
@@ -34,7 +35,8 @@ function App() {
             <div id="content">
                 <div id="info-row">
                     <GameScore score={score} numMines={NUM_MINES} />
-                    <NewGameButton newGame={newGame}/>
+                    <GameStateLabel gameState={gameState} />
+                    <NewGameButton newGame={newGame} />
                 </div>
                 <GameBoard
                     height={HEIGHT}
@@ -44,7 +46,7 @@ function App() {
                     gameState={gameState}
                     setGameState={setGameState}
                 />
-                <Instructions/>
+                <Instructions />
             </div>
         </div>
     );
