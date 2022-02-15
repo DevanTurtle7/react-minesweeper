@@ -20,7 +20,7 @@ function Space(props) {
         if (mine && open) {
             gameOver()
         }
-    })
+    }, [needsUpdate, mine, open, gameOver])
 
     const onClick = (e) => {
         let shiftDown = e.shiftKey

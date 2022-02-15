@@ -20,7 +20,7 @@ function GameBoard(props) {
         if (update) {
             setUpdate(false)
         }
-    })
+    }, [update])
 
     const hardUpdate = () => {
         setUpdate(true)
