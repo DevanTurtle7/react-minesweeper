@@ -14,7 +14,7 @@ function GameBoard(props) {
 
     const height = props.height
     const width = props.width
-    const num_mines = props.num_mines
+    const numMines = props.numMines
 
     useEffect(() => {
         if (update) {
@@ -68,7 +68,7 @@ function GameBoard(props) {
         }
 
         // Draw random positions to get mines
-        for (let i = 0; i < num_mines; i++) {
+        for (let i = 0; i < numMines; i++) {
             let positions = Array.from(availablePos);
             let key = positions[Math.floor(Math.random() * positions.length)];
             mines.add(key)

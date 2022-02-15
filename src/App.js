@@ -1,5 +1,6 @@
 import { useState } from "react";
 import GameBoard from "./components/GameBoard";
+import GameScore from "./components/GameScore";
 
 const HEIGHT = 15;
 const WIDTH = 30;
@@ -15,13 +16,16 @@ function App() {
     console.log(score + "/" + NUM_MINES)
 
     return (
-        <div className="center-absolute page">
-            <GameBoard
-                height={HEIGHT}
-                width={WIDTH}
-                num_mines={NUM_MINES}
-                updateScore={updateScore}
-            />
+        <div>
+            <GameScore score={score} numMines={NUM_MINES}/>
+            <div className="center-absolute page">
+                <GameBoard
+                    height={HEIGHT}
+                    width={WIDTH}
+                    numMines={NUM_MINES}
+                    updateScore={updateScore}
+                />
+            </div>
         </div>
     );
 }
