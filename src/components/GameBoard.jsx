@@ -152,7 +152,7 @@ function GameBoard(props) {
                         onClick={generateLayout}
                         x={x}
                         y={y}
-                        key={x + "" + y}
+                        key={x + " " + y}
                     />)
                 }
 
@@ -176,7 +176,7 @@ function GameBoard(props) {
                             hardUpdate={hardUpdate}
                             gameOver={gameOver}
                             updateScore={updateScore}
-                            key={x + "" + y}
+                            key={x + " " + y}
                         />
                     )
                 }
