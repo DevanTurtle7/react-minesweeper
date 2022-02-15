@@ -79,8 +79,10 @@ function Space(props) {
     }
 
     return (
+        <div className="board-space-container">
         <div className={getClassName()} onClick={onClick}>
             {createCount()}
+        </div>
         </div>
     )
 }
