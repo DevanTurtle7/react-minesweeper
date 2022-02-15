@@ -2,11 +2,12 @@ import { useState } from "react";
 import GameBoard from "./components/GameBoard";
 import GameScore from "./components/GameScore";
 import NewGameButton from "./components/NewGameButton";
+import Instructions from "./components/Instructions";
 import { GAME_NOT_STARTED, GAME_IN_PROGRESS, GAME_OVER } from "./Globals";
 
 const HEIGHT = 15;
 const WIDTH = 30;
-const NUM_MINES = 50;
+const NUM_MINES = 100;
 
 function App() {
     const [score, setScore] = useState(0)
@@ -36,6 +37,7 @@ function App() {
                     gameState={gameState}
                     setGameState={setGameState}
                 />
+                <Instructions/>
             </div>
         </div>
     );

@@ -6,7 +6,16 @@ body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 
-    --overflagged-color: #ff6b6b
+    /* Variable */
+    --overflagged-color: #ff6b6b;
+    --width: 90vw;
+    --num_tiles_y: 15;
+    --num_tiles_x: 30;
+
+    /* Calculated */
+    --height: calc(var(--height_width_ratio) * var(--width));
+    --height_width_ratio: calc(var(--num_tiles_y) / var(--num_tiles_x));
+    --tile_size: calc(var(--width) / var(--num_tiles_x));
 }
 
 code {
@@ -15,10 +24,9 @@ code {
 }
 
 .board-space {
-    width: 30px;
-    height: 30px;
+    width: var(--tile_size);
+    height: var(--tile_size);
     background-color: rgb(170, 170, 170);
-    margin: 2px;
     display: flex;
     flex-flow: column;
     justify-content: center;
@@ -61,8 +69,9 @@ code {
 }
 
 .board {
-    height: fit-content;
-    width: fit-content;
+    width: var(--width);
+    height: var(--height);
+    margin: 0;
 }
 
 .center-absolute {
@@ -93,10 +102,11 @@ code {
     justify-content: space-between;
     align-items: flex-end;
     width: 100%;
+    margin-bottom: 10px;;
 }
 
 #content {
-    width: fit-content;
+    width: var(--width);
     height: fit-content;
 }
 
@@ -107,4 +117,11 @@ code {
 
 #game-score {
     margin: 0;
+}
+
+#instructions p {
+    margin-top: 10px;
+    margin-bottom: 0px;
+    margin-left: 0px;
+    margin-right: 0px;
 }
