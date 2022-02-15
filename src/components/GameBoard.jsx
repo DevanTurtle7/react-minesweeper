@@ -14,6 +14,7 @@ function GameBoard(props) {
     const height = props.height
     const width = props.width
     const numMines = props.numMines
+    const score = props.score
 
     useEffect(() => {
         if (update) {
@@ -32,7 +33,28 @@ function GameBoard(props) {
     }
 
     const updateScore = (increase) => {
+        checkGameWin()
         props.updateScore(increase)
+    }
+
+    const checkGameWin = () => {
+        if (score !== numMines) {
+            return false
+        }
+
+        for (let y = 0; y < height; y++) {
+            for (let x = 0; x < width; x++) {
+                let current = layout[y][x]
+
+                // If its not a mine, it shouldn't be flagged. If its a mine, it should be flagged
+                if (current.isMine() != current.isFlagged()) {
+                    return false
+                }
+            }
+        }
+
+        setGameState(GAME_WON)
+        return true
     }
 
     const generateLayout = (startX, startY) => {

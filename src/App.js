@@ -18,13 +18,6 @@ function App() {
         setScore(score + (increase ? 1 : -1))
     }
 
-    const gameLost = () => {
-
-    }
-
-    const gameWin = () => {
-    }
-
     const newGame = () => {
         setScore(0)
         setGameState(GAME_NOT_STARTED)
@@ -42,6 +35,7 @@ function App() {
                     height={HEIGHT}
                     width={WIDTH}
                     numMines={NUM_MINES}
+                    score={score}
                     updateScore={updateScore}
                     gameState={gameState}
                     setGameState={setGameState}
