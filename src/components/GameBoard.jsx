@@ -10,7 +10,8 @@ const GAME_OVER = 2
 function GameBoard(props) {
     const [layout, setLayout] = useState([])
     const [update, setUpdate] = useState(false)
-    const [gameState, setGameState] = useState(GAME_NOT_STARTED)
+    const gameState = props.gameState
+    const setGameState = props.setGameState
 
     const height = props.height
     const width = props.width
