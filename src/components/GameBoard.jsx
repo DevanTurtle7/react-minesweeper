@@ -3,7 +3,7 @@ import EmptySpace from "./EmptySpace";
 import Space from './Space';
 import Tile from './Tile';
 
-import { GAME_NOT_STARTED, GAME_IN_PROGRESS, GAME_OVER } from "../Globals";
+import { GAME_NOT_STARTED, GAME_IN_PROGRESS, GAME_WON, GAME_LOST } from "../Globals";
 
 function GameBoard(props) {
     const [layout, setLayout] = useState([])
@@ -26,9 +26,9 @@ function GameBoard(props) {
     }
 
     const gameOver = () => {
-        if (gameState != GAME_OVER) {
+        if (gameState != GAME_LOST) {
             alert("game over")
-            setGameState(GAME_OVER)
+            setGameState(GAME_LOST)
         }
     }
 

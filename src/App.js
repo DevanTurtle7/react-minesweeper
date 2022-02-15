@@ -3,7 +3,7 @@ import GameBoard from "./components/GameBoard";
 import GameScore from "./components/GameScore";
 import NewGameButton from "./components/NewGameButton";
 import Instructions from "./components/Instructions";
-import { GAME_NOT_STARTED, GAME_IN_PROGRESS, GAME_OVER } from "./Globals";
+import { GAME_NOT_STARTED, GAME_IN_PROGRESS, GAME_WON, GAME_LOST } from "./Globals";
 
 const HEIGHT = 15;
 const WIDTH = 30;
@@ -15,6 +15,13 @@ function App() {
 
     const updateScore = (increase) => {
         setScore(score + (increase ? 1 : -1))
+    }
+
+    const gameLost = () => {
+
+    }
+
+    const gameWin = () => {
     }
 
     const newGame = () => {
