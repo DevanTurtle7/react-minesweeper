@@ -83,8 +83,8 @@ function GameBoard(props) {
             for (let x = 0; x < width; x++) {
                 // Random for now
                 let key = (y * width) + x
-                let bomb = mines.has(key)
-                let tile = new Tile(x, y, bomb)
+                let mine = mines.has(key)
+                let tile = new Tile(x, y, mine)
 
                 row.push(tile)
             }

@@ -35,7 +35,7 @@ code {
     background-color: rgb(170, 170, 170);
 }
 
-.board-space.open.bomb {
+.board-space.open.mine {
     background: red !important;
 }
 

@@ -2,15 +2,15 @@
 class Tile {
     #x
     #y
-    #bomb
+    #mine
     #open
     #flagged
     #neighbors
 
-    constructor(x, y, bomb) {
+    constructor(x, y, mine) {
         this.#x = x
         this.#y = y
-        this.#bomb = bomb
+        this.#mine = mine
 
         this.#open = false
         this.#flagged = false
@@ -65,14 +65,14 @@ class Tile {
     }
 
     getCount() {
-        if (this.#bomb) {
+        if (this.#mine) {
             return -1
         }
 
         let count = 0
 
         this.#neighbors.forEach((item) => {
-            if (item.isBomb()) {
+            if (item.isMine()) {
                 count++
             }
         })
@@ -80,8 +80,8 @@ class Tile {
         return count;
     }
 
-    isBomb() {
-        return this.#bomb
+    isMine() {
+        return this.#mine
     }
 
     getX() {

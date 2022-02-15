@@ -6,7 +6,7 @@ function Space(props) {
     const yCoord = tile.getY()
     const open = tile.isOpen()
     const flagged = tile.isFlagged()
-    const bomb = tile.isBomb()
+    const mine = tile.isMine()
     const count = tile.getCount()
     const numFlags = tile.numFlags()
     const hardUpdate = props.hardUpdate
@@ -19,7 +19,7 @@ function Space(props) {
             setUpdate(false)
         }
 
-        if (bomb && open) {
+        if (mine && open) {
             gameOver()
         }
     })
@@ -53,15 +53,15 @@ function Space(props) {
     const getClassName = () => {
         let className = "board-space " + (open ? "open" : "hidden")
 
-        if (open && bomb) {
-            className += " bomb"
+        if (open && mine) {
+            className += " mine"
         }
 
         if (!open && flagged) {
             className += " flagged"
         }
 
-        if (open && !bomb && (numFlags > count)) {
+        if (open && !mine && (numFlags > count)) {
             className += " overflagged"
         }
 
@@ -69,7 +69,7 @@ function Space(props) {
     }
 
     const createCount = () => {
-        let text = (bomb ? "" : count)
+        let text = (mine ? "" : count)
 
         if (open && count > 0) {
             return (<p className="count-text">{text}</p>)
