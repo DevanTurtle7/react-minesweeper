@@ -33,14 +33,13 @@ function GameBoard(props) {
             for (let y = 0; y < height; y++) {
                 for (let x = 0; x < width; x++) {
                     let current = layout[y][x]
-                    current.setOpen()
+                    current.hardOpen()
                 }
             }
         }
     }
 
     const updateScore = (increase) => {
-        checkGameWin()
         props.updateScore(increase)
     }
 
@@ -61,6 +60,14 @@ function GameBoard(props) {
         }
 
         setGameState(GAME_WON)
+
+        for (let y = 0; y < height; y++) {
+            for (let x = 0; x < width; x++) {
+                let current = layout[y][x]
+                current.setOpen()
+            }
+        }
+
         return true
     }
 
@@ -194,6 +201,8 @@ function GameBoard(props) {
             return grid
         }
     }
+
+    checkGameWin()
 
     return (
         <div className="board">

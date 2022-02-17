@@ -39,13 +39,17 @@ class Tile {
     }
 
     setOpen() {
-        if (!this.#open) {
+        if (!this.#open && !this.#flagged) {
             this.#open = true
 
             if (this.isSatisfied()) {
                 this.openNeighbors()
             }
         }
+    }
+
+    hardOpen() {
+        this.#open = true
     }
 
     openNeighbors() {
