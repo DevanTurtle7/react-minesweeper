@@ -29,6 +29,13 @@ function GameBoard(props) {
     const gameOver = () => {
         if (gameState !== GAME_LOST) {
             setGameState(GAME_LOST)
+
+            for (let y = 0; y < height; y++) {
+                for (let x = 0; x < width; x++) {
+                    let current = layout[y][x]
+                    current.setOpen()
+                }
+            }
         }
     }
 
