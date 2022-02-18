@@ -97,7 +97,7 @@ code {
 }
 
 .count-text {
-    font-weight: 600;
+    font-weight: 700;
 }
 
 #info-row {
@@ -143,4 +143,36 @@ code {
 
 .game-state-label.visible {
     visibility: visible;
+}
+
+.count-text.count-1 {
+    color: #0000ff;
+}
+
+.count-text.count-2 {
+    color: #099939;
+}
+
+.count-text.count-3 {
+    color: #ff0000;
+}
+
+.count-text.count-4 {
+    color: #5b2899;
+}
+
+.count-text.count-5 {
+    color: #ffa600;
+}
+
+.count-text.count-6 {
+    color: #ff00fb;
+}
+
+.count-text.count-7 {
+    color: #18a8ad;
+}
+
+.count-text.count-8 {
+    color: #000;
 }

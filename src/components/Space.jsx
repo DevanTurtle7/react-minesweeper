@@ -70,7 +70,8 @@ function Space(props) {
         let text = (mine ? "" : count)
 
         if (open && count > 0) {
-            return (<p className="count-text">{text}</p>)
+            let className = "count-text count-" + count
+            return (<p className={className}>{text}</p>)
         } else {
             return null
         }
